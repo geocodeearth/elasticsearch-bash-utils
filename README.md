@@ -9,7 +9,7 @@ crucial to montioring real live production Elasticsearch instances.
 All scripts default to looking at a local cluster, so to quickly get started monitoring a cluster, the following can be used:
 
 ```
-git clone https://github.com/orangejulius/elasticsearch-bash-utils.git
+git clone https://github.com/geocodeearth/elasticsearch-bash-utils.git
 cd elasticsearch-bash-utils
 watch bash es_diagnostic.sh
 ```
