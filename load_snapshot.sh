@@ -1,7 +1,7 @@
 #!/bin/bash -ex
 
 ##
-# loads a snapshot onto a dev cluster
+# loads a snapshot onto an elasticsearch cluster
 ##
 
 set -euo pipefail
