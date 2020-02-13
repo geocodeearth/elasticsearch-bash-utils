@@ -26,7 +26,7 @@ All scripts take a `cluster_url` variable. The default is `http://localhost:9200
 
 ### Load a snapshot
 
-This script lets you set up a Snapshot Repository and load a snapshot in a single command.
+This script lets you set up a Snapshot Repository pointing to a location in S3 and load a snapshot in a single command.
 
 Example usage:
 
@@ -37,6 +37,10 @@ snapshot_name="the name of the snapshot, or leave blank to use the first snapsho
 cluster_url="http://the-path-to-your-cluster" \
 bash load_snapshot.sh
 ```
+
+### Load a snapshot (without setting up a repository)
+
+The same as above, but skips setting up a repository.
 
 ### Make an alias
 

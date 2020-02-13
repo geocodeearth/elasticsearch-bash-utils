@@ -1,21 +1,18 @@
-#!/bin/bash -ex
+#!/bin/bash
 
 ##
 # loads a snapshot onto an elasticsearch cluster
+# unlike `load_snapshot.sh`, this does not create the repository
 ##
 
 set -euo pipefail
 
 cluster_url="${cluster_url:-http://localhost:9200}"
-base_path=${base_path:-elasticsearch}
-es_repo_name="${es_repo_name:-pelias_snapshot}"
-s3_bucket="${s3_bucket:-}"
-snapshot_name="${snapshot_name:-}"
-read_only="${read_only:-true}"
+es_repo_name="${es_repo_name:-}" # the name of the snapshot repository
+snapshot_name="${snapshot_name:-}" # the snapshot name (first snapshot is used if empty)
 
-# check all required variables are set
-if [[ "$s3_bucket" == "" ]]; then
-  echo "s3_bucket not set, no snapshot will be loaded"
+if [[ "$es_repo_name" == "" ]]; then
+  echo "es_repo_name is not set, no snapshot will be loaded"
   exit 1
 fi
 
@@ -24,20 +21,6 @@ if ! [[ -x "$(command -v jq)" ]]; then
   echo 'Error: jq is not installed.' >&2
   exit 1
 fi
-
-# create elasticsearch snapshot repository
-curl -XPOST "$cluster_url/_snapshot/$es_repo_name" \
-  -H 'Content-Type: application/json' \
-  -d "{
- \"type\": \"s3\",
-   \"settings\": {
-   \"bucket\": \"$s3_bucket\",
-   \"read_only\": $read_only,
-   \"base_path\" : \"$base_path\",
-   \"max_snapshot_bytes_per_sec\" : \"1000mb\",
-   \"max_restore_bytes_per_sec\" : \"1000mb\"
- }
-}"
 
 ## autodetect snapshot name if not specified
 if [[ "$snapshot_name" == "" ]]; then
