@@ -2,7 +2,7 @@
 
 This is a collection of useful scripts for working with Elasticsearch on the command line. They
 aren't the prettiest tools out there, but they provide information-dense and accurate information
-crucial to montioring real live production Elasticsearch instances.
+crucial to managing real live production Elasticsearch instances.
 
 These scripts were originally made for use with the [Pelias Geocoder](https://pelias.io), but are _mostly_ general purpose.
 
