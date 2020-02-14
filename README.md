@@ -42,6 +42,15 @@ bash load_snapshot.sh
 
 The same as above, but skips setting up a repository.
 
+Example usage:
+
+```sh
+es_repo_name="your-repo-name" \
+snapshot_name="the name of the snapshot, or leave blank to use the first snapshot listed" \
+cluster_url="http://the-path-to-your-cluster" \
+bash load_snapshot_only.sh
+```
+
 ### Make an alias
 
 This script creates a `pelias` alias, which can be helpful when working with multiple snapshots. Pelias [can be configured](https://github.com/pelias/api#configuration-via-pelias-config) to use any index name you choose, but the default is `pelias`.
@@ -51,10 +60,13 @@ Example usage:
 ```sh
 cluster_url="http://the-path-to-your-cluster" \
 index_name="yourIndex" \
+alias_name="pelias" \
 bash make_alias.sh
 ```
 
 This will make an alias at `pelias` pointing to `yourIndex`.
+
+The `alias_name` parameter defaults to `pelias` and can be omitted.
 
 ### Add (or remove) replica shards
 

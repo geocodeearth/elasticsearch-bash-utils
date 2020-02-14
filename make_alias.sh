@@ -2,9 +2,15 @@
 set -euo pipefail
 
 cluster_url="${cluster_url:-http://localhost:9200}"
-index_name="${index_name:-pelias-2017.11.18-001123}"
+index_name="${index_name:-}"
+alias_name="${alias_name:-pelias}"
 
-echo "setting pelias alias to $index_name on $cluster_url"
+if [[ "$index_name" == "" ]]; then
+  echo "$index_name not set, no alias created"
+  exit 1
+fi
+
+echo "setting ${alias_name} alias to $index_name on $cluster_url"
 
 curl -XPOST "$cluster_url/_aliases" \
   -H 'Content-Type: application/json' \
@@ -12,7 +18,7 @@ curl -XPOST "$cluster_url/_aliases" \
   \"actions\": [{
     \"add\": {
 	  \"index\": \"$index_name\",
-	  \"alias\": \"pelias\"
+	  \"alias\": \"$alias_name\"
 	}
   }]
 }"
