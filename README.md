@@ -82,3 +82,18 @@ bash add_replica.sh
 ```
 
 The default value for `index_name` is `pelias`, and the default `replica_count` is `1`. You can remove all replicas with `replica_count="0"`.
+
+### Force merge an index
+
+[Force merging indices](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-forcemerge.html)
+is a best practice to optimize performance of read-only workloads.
+
+Example usage:
+```sh
+cluster_url="http://the-path-to-your-cluster" \
+index_name="pelias" \
+num_segments="1" \
+bash force_merge.sh
+```
+
+The default value for `num_segments` is `1`. Higher values will complete faster, but `1` offers optimal performance.
