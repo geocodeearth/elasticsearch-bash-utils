@@ -8,6 +8,7 @@ cluster_url="${cluster_url:-http://localhost:9200}"
 curl -s -XPOST "$cluster_url/pelias/_search?size=0" \
   -H 'Content-Type: application/json' \
   -d '{
+  "track_total_hits": true,
   "aggs" : {
     "source_count" : { "terms" : { "field" : "source" } }
   }
@@ -19,6 +20,7 @@ curl -s -XPOST "$cluster_url/pelias/_search?size=0" \
 curl -s -XPOST "$cluster_url/pelias/_search?size=0" \
   -H 'Content-Type: application/json' \
   -d '{
+  "track_total_hits": true,
   "aggs" : {
     "layer_count" : { "terms" : { "field" : "layer", "size": 20 } }
   }
