@@ -2,9 +2,7 @@
 set -eu
 
 cluster_url="${cluster_url:-http://localhost:9200}"
-
-## CONFIGURE SCRIPT HERE
-index_name="pelias"
+index_name="${index_name:-pelias}"
 
 ## show basic index information
 echo -e "INDICES"
